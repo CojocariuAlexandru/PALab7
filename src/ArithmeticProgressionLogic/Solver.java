@@ -1,13 +1,15 @@
 package ArithmeticProgressionLogic;
 import java.util.*;
 import Game.*;
-
+/**
+* Implements the algorithm of finding the longest arithmetic subsequence
+*/
 public class Solver {
-    /**
-     * Implements the algorithm of finding the longest arithmetic subsequence
-     */
+    
 
-    //Implemented naively in O(n^4) complexity however O(n^2) is achievable
+    /**
+    *Gets the length of the maximamum arithmetic prograssion, receiving a list of tokens as parameter
+    */
     public int getMaximumProgression(List<Token> tokensToCheck){
         int i, j;
         int progression;
@@ -34,6 +36,10 @@ public class Solver {
         return counterMax;
     }
 
+    /**
+    * Given two numbers, find how many other numbers can continue that sequence
+    * For example: start = 5, progression = 3, the method will search for 8, 11, 14, ...
+    */
     private int searchForOtherNumbers(List<Token> tokensToCheck, int start, int progression){
         int counter = 2;
         int nextNumberInSequence;
@@ -49,6 +55,9 @@ public class Solver {
         return counter;
     }
 
+    /**
+    * Checks if a token value exists in an array of tokens
+    */
     private boolean checkIfNumberExists(List<Token> tokensToCheck, int numberSearched){
         for(Token token : tokensToCheck){
             if(token.getValue() == numberSearched){
