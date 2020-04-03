@@ -1,9 +1,10 @@
 package Game;
 
-public class Token {
     /**
      * Manages token attributes: value, availability
      */
+
+public class Token {
     private boolean isTaken;
     private int value;
 
