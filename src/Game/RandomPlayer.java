@@ -2,7 +2,7 @@ package Game;
 import java.util.*;
 
     /**
-    * Implement random choosing of tokens
+    * Implements random choosing of tokens
     */
 
 public class RandomPlayer extends Player{
