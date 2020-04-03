@@ -1,10 +1,12 @@
 package Game;
 import java.util.*;
 
-public abstract class Player implements Runnable{
     /**
      * Has all implementation of a player except his playing strategy
      */
+
+public abstract class Player implements Runnable{
+
     protected String name;
     protected GameInterface GamePlayed;
     protected List<Token> tokensTaken;
@@ -20,6 +22,9 @@ public abstract class Player implements Runnable{
         return name;
     }
 
+     /**
+     * Adds token to this list and marks the token as chosen
+     */
     protected void chooseToken(Token chosenToken){
         tokensTaken.add(chosenToken);
         chosenToken.setChosen();
@@ -29,19 +34,27 @@ public abstract class Player implements Runnable{
         return tokensTaken;
     }
 
+     /**
+     * Prints on screen a player's choosings
+     */
     public void displayChosenTokens(){
         for(Token token : tokensTaken){
             System.out.print(token.getValue() + " ");
         }
         System.out.println(" ");
     }
-
+    
+     /**
+     * Stop choosing tokens and notify the game that you are done choosing - you achieved your goal
+     */
     public void stopChoosingTokens(){
         running = false;
         GamePlayed.stopGame();
     }
 
-    //The strategy of choosing tookens - random from available tokens
+     /**
+     * The thread stars here: gets the available tokens and choses one token if it is the player's turn
+     */
     @Override
     public void run() {
         List<Token> availableTokens = new ArrayList<>();
@@ -64,7 +77,6 @@ public abstract class Player implements Runnable{
         }
     }
 
-    //By default take randomly
     synchronized protected void takeToken(List<Token> availableTokens, int count){
         int randomNumberChoice;
         if(GamePlayed.checkIfGameEnded() == true){
@@ -81,6 +93,9 @@ public abstract class Player implements Runnable{
         }
     }
 
+     /**
+     * Wait for .getCurrentPlayer() to match your name
+     */
     synchronized private void waitForYourTurn(){
         while(this.name.compareTo(GamePlayed.getCurrentPlayer()) != 0){
             try {
