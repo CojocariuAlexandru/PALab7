@@ -3,10 +3,12 @@ import java.util.*;
 import ArithmeticProgressionLogic.Solver;
 import java.io.*;
 
-public class SmartPlayer extends Player{
     /**
-    Implements the strategy that greedily takes the best option
-     */
+    *Implements the strategy that greedily takes the best option
+    */
+
+public class SmartPlayer extends Player{
+
     private Solver solver;
 
     public SmartPlayer(String name, GameInterface GamePlayed){
@@ -32,7 +34,9 @@ public class SmartPlayer extends Player{
             lock.notifyAll();
         }
     }
-
+    /**
+    * Implements the logic of a 'smart' choosing of tokens - tries all posibilities and choses the best one
+    */
     private int getSmartPlayerChoice(List<Token> availableTokens, int count){
         int tokenIndex = 1;
         int indexToBeReturned = 0;
