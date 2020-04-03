@@ -2,10 +2,12 @@ package Game;
 
 import java.util.List;
 
-public interface GameInterface {
     /**
-     * Everything a game has to implement
-     */
+    * Everything a game has to implement
+    */
+
+public interface GameInterface {
+
     String getCurrentTurnPlayerName(String previousPlayer);
     String getCurrentPlayer();
     Player getWinner();
