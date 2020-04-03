@@ -6,10 +6,11 @@ import java.util.List;
 import ArithmeticProgressionLogic.Solver;
 import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 
+/**
+* Implements the logic for the game of arithmetic progression and stars player's threads
+*/
+
 public class GameArithmeticProgression implements GameInterface {
-    /**
-     * All logic for a game
-     */
     private int maximumSizeProgression;
     private Solver problemSolver;
     private Board gameBoard;
@@ -18,6 +19,9 @@ public class GameArithmeticProgression implements GameInterface {
     private String currentPlayerTurn;
     boolean gameRunning;
 
+    /**
+    * Takes the number of tokens, token's values and the size of the progression that needs to be achieved
+    */
     public GameArithmeticProgression(int maximumSizeProgression, int numberOfTokens, int... tokenValues){
         this.maximumSizeProgression = maximumSizeProgression;
         gameBoard = new Board(numberOfTokens);
@@ -30,6 +34,9 @@ public class GameArithmeticProgression implements GameInterface {
         }
     }
 
+    /**
+    * Shifts to the next player in queue
+    */
     public void changeCurrentPlayer(){
         currentPlayerTurn = getCurrentTurnPlayerName(currentPlayerTurn);
     }
@@ -57,6 +64,9 @@ public class GameArithmeticProgression implements GameInterface {
         }
     }
 
+    /**
+    * Checks if the game has to be stopped, meaning that either no tokens are available or a player managed to achieve the goal
+    */
     public boolean checkIfGameEnded(){
         int maximumPlayerSequence;
         for(Player player : playersInGame){
@@ -71,9 +81,9 @@ public class GameArithmeticProgression implements GameInterface {
         return false;
     }
 
-    private boolean checkIfValidMove(){
-        return false;
-    }
+    /**
+    * In case the game ended, returns the player that managed to achieve the goal
+    */
     public Player getWinner(){
         int maximumPlayerSequence;
         if(checkIfGameEnded() == false){
@@ -87,6 +97,10 @@ public class GameArithmeticProgression implements GameInterface {
         }
         return null;
     }
+    
+    /**
+    * Starts the threads: players and time keeper and prints the winner
+    */
 
     public void startGameLoop(){
         timeKeeper = new TimeKeeper(this, /*maximum time in seconds for a game*/100);
@@ -107,9 +121,12 @@ public class GameArithmeticProgression implements GameInterface {
         getWinner().displayChosenTokens();
     }
 
+    /**
+    *  Gets the name of a player and returns the next player in the list (his name)
+    */
     public String getCurrentTurnPlayerName(String previousPlayer){
         boolean isItNext = false;
-        //if the previuos player is the last in the list
+        //if the previuos player is the last in the list then the next player will be the first in the list (cyclic order)
         if(playersInGame.get(playersInGame.size()-1).name.compareTo(previousPlayer) == 0){
             return playersInGame.get(0).name;
         }
