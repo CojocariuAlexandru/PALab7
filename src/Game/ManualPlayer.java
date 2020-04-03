@@ -2,10 +2,12 @@ package Game;
 import java.util.*;
 import java.io.*;
 
+   /**
+   *Implements user input as taking strategy
+   */
+
 public class ManualPlayer extends Player{
-    /**
-    Implements user input as taking strategy
-     */
+ 
     private Scanner scanner;
 
     public ManualPlayer(String name, GameInterface GamePlayed){
@@ -15,6 +17,9 @@ public class ManualPlayer extends Player{
         scanner = new Scanner(System.in);
     }
 
+   /**
+   *Reads the token to be chosen from standard input and notifies the other players
+   */
     @Override
     protected synchronized void takeToken(List<Token> availableTokens, int count){
         int numberChoice;
