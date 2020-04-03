@@ -2,10 +2,12 @@ package Game;
 
 import java.awt.event.WindowEvent;
 
+/**
+* Keeps track of current playing time
+*/
+
 public class TimeKeeper implements Runnable {
-    /**
-     * Keeps track of current playing time
-     */
+    
     private GameInterface apartainingGame;
     private double startTime;
     private double currentTime;
@@ -17,6 +19,9 @@ public class TimeKeeper implements Runnable {
         this.maximumTime = maximumTime * 1000; //*1000 because i'm working with nano
     }
 
+    /**
+     * The thread starts here: if the time elapsed is bigger than maximumTime then stopGame() method is called
+     */
     @Override
     public void run() {
         while(apartainingGame.checkGameRunning() == true){
