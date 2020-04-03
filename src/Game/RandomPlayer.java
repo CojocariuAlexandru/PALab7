@@ -1,10 +1,12 @@
 package Game;
 import java.util.*;
 
-public class RandomPlayer extends Player{
     /**
-     * Implement random choosing of tokens
-     */
+    * Implement random choosing of tokens
+    */
+
+public class RandomPlayer extends Player{
+    
 
 
     public RandomPlayer(String name, GameInterface GamePlayed){
