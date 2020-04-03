@@ -1,10 +1,10 @@
 package Game;
 
-public class Main {
     /**
      * Creates instances: a game, players and starts the game
      */
 
+public class Main {
     public static void main(String[] args) {
 
         GameArithmeticProgression game1 = new GameArithmeticProgression(5, 20,
